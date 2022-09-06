@@ -1,0 +1,23 @@
+{
+  "name": "notihnio/php-multipart-form-data-parser",
+  "description": "Compile and protect your php code from been stolen. No risk deployments to client's servers",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Notis Mastrandrikos",
+      "email": "pmastrandrikos@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Notihnio\\Cactus\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=8.0",
+    "ext-zend-opcache": "*",
+    "ext-fileinfo": "*"
+  },
+  "minimum-stability": "stable"
+}

@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+composer.lock
+vendor
+test/vendor
+test/composer.lock
+test/.phpunit.result.cache
