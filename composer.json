@@ -1,5 +1,5 @@
 {
-  "name": "notihnio/php-multipart-form-data-parser",
+  "name": "notihnio/php-cactus",
   "description": "Compile and protect your php code from been stolen. No risk deployments to client's servers",
   "type": "library",
   "license": "MIT",
