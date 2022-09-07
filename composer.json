@@ -1,5 +1,8 @@
 {
   "name": "notihnio/php-cactus",
+  "bin": [
+    "bin"
+  ],
   "description": "Compile and protect your php code from been stolen. No risk deployments to client's servers",
   "type": "library",
   "license": "MIT",

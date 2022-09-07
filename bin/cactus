@@ -1,5 +1,5 @@
 #!/usr/bin/env php
 <?php
 
-include __DIR__ .DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'autoload.php';
+include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 echo  "edw";
