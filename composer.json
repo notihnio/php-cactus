@@ -1,5 +1,8 @@
 {
   "name": "notihnio/php-cactus",
+  "bin": [
+    "src/bin/cactus"
+  ],
   "description": "Compile and protect your php code from been stolen. No risk deployments to client's servers",
   "type": "library",
   "license": "MIT",
@@ -19,8 +22,5 @@
     "ext-zend-opcache": "*",
     "ext-fileinfo": "*"
   },
-  "minimum-stability": "stable",
-  "bin": [
-    "cactus"
-  ]
+  "minimum-stability": "stable"
 }
