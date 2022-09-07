@@ -1,5 +1,5 @@
 #!/usr/bin/env php
 <?php
 
-include __DIR__ .DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'autoload.php';
+include __DIR__ .DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'autoload.php';
 echo  "edw";
