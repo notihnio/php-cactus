@@ -19,5 +19,8 @@
     "ext-zend-opcache": "*",
     "ext-fileinfo": "*"
   },
-  "minimum-stability": "stable"
+  "minimum-stability": "stable",
+  "bin": [
+    "cactus"
+  ]
 }
