@@ -7,6 +7,13 @@ use Notihnio\Cactus\Exception\DepedencyException;
 
 class Cactus
 {
+    /**
+     * @throws \Notihnio\Cactus\Exception\DepedencyException
+     */
+    public function __construct()
+    {
+        $this->detectPhpConfiguration();
+    }
 
     /**
      * @return string
@@ -65,6 +72,7 @@ class Cactus
      * @param $rootDirectory
      *
      * @return void
+     * @throws \Notihnio\Cactus\Exception\RuntimeException
      */
     private function compile($rootDirectory): void
     {

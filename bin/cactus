@@ -2,4 +2,5 @@
 <?php
 
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
-echo  "edw";
+
+$cactus = new \Notihnio\Cactus\Cactus();
