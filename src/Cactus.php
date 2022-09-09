@@ -107,7 +107,8 @@ class Cactus
 
             $filePath = $rootDirectory . DIRECTORY_SEPARATOR . $dirChild;
 
-            if (is_file($filePath) && in_array(mime_content_type($filePath), $phpMimeTypes, true)
+            if (str_ends_with($dirChild, ".php") &&
+                is_file($filePath) && in_array(mime_content_type($filePath), $phpMimeTypes, true)
             ) {
 
                 //if file exists in cache
