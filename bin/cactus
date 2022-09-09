@@ -7,7 +7,7 @@ include $_composer_autoload_path;
 try {
     $cactus = new \Notihnio\Cactus\Cactus();
 } catch (\Notihnio\Cactus\Exception\DepedencyException $exception) {
-    echo "Depedency error: {$exception->getMessage()}\n";
+    echo "Dependency error: {$exception->getMessage()}\n";
     exit(1);
 }
 
