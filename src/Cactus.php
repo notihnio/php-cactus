@@ -24,13 +24,24 @@ class Cactus
     }
 
     /**
+     * @throws \Notihnio\Cactus\Exception\DepedencyException
+     */
+    private function detectIfOpcacheIsEnabled() : void
+    {
+        if (!is_array(opcache_get_status())) {
+            throw new DepedencyException("Opcache should be enabled");
+
+        }
+    }
+
+    /**
      * @return string
      * @throws \Notihnio\Cactus\Exception\DepedencyException
      */
     private function getOpcacheFileCachePath(): string
     {
         if (!ini_get("opcache.file_cache")) {
-            throw new DepedencyException("Opcache file cache should enabled");
+            throw new DepedencyException("Opcache file cache should be enabled");
         }
 
         return ini_get("opcache.file_cache");
@@ -64,6 +75,7 @@ class Cactus
      */
     private function detectPhpConfiguration(): void
     {
+        $this->detectIfOpcacheIsEnabled();
         $this->detectIfFileCacheDirIsWritable();
         $this->detectOpcacheValidateTimestamps();
     }
