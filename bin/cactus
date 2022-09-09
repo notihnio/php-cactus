@@ -1,6 +1,21 @@
 #!/usr/bin/env php
+
 <?php
 
-include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
+include $_composer_autoload_path;
 
-$cactus = new \Notihnio\Cactus\Cactus();
+try {
+    $cactus = new \Notihnio\Cactus\Cactus();
+} catch (\Notihnio\Cactus\Exception\DepedencyException $exception) {
+    echo "Depedency error: {$exception->getMessage()}\n";
+    exit(1);
+}
+
+$rootDir = dirname(__FILE__, 5);
+
+try {
+    $cactus->compile($rootDir);
+} catch (\Notihnio\Cactus\Exception\RunTimeException $exception) {
+    echo "Runtime error: {$exception->getMessage()}\n";
+    exit(1);
+}

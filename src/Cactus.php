@@ -69,12 +69,13 @@ class Cactus
     }
 
     /**
-     * @param $rootDirectory
+     * @param      $rootDirectory
+     * @param bool $isRootDir
      *
      * @return void
      * @throws \Notihnio\Cactus\Exception\RuntimeException
      */
-    private function compile($rootDirectory): void
+    public function compile($rootDirectory, bool $isRootDir = true): void
     {
         $dirContents = scandir($rootDirectory);
 
@@ -87,26 +88,42 @@ class Cactus
             "application/x-httpd-php-source"
         ];
 
-       foreach ($dirContents as $dirChild) {
-           $filePath = $rootDirectory . DIRECTORY_SEPARATOR . $dirChild;
+        foreach ($dirContents as $dirChild) {
+            if ($dirChild === "." || $dirChild === "..") {
+                continue;
+            }
 
-           if (is_file($filePath) &&
-               in_array(mime_content_type($$filePath), $phpMimeTypes, true)
-           ) {
-               if (!is_writable($filePath)) {
-                   throw new RuntimeException("No permissions to write file {$filePath}");
-               }
+            $filePath = $rootDirectory . DIRECTORY_SEPARATOR . $dirChild;
 
-               opcache_compile_file($filePath);
-               file_put_contents($filePath, "<?php //compiled by Cactus");
-           }
+            if (is_file($filePath) && in_array(mime_content_type($filePath), $phpMimeTypes, true)
+            ) {
 
-           if (is_dir($filePath)) {
-               if (!is_readable($filePath)) {
-                   throw new RuntimeException("No permissions to read dir {$filePath}");
-               }
-               $this->compile($rootDirectory . DIRECTORY_SEPARATOR . $dirChild);
-           }
-       }
+                //if file has been compliled
+                if(strpos(file_get_contents($filePath), "compiled by Cactus") !== false && $dirChild !== "Cactus.php") {
+                    //do not compile it again
+                    echo "Skipping file ${filePath}, has already been compiled\n";
+                    continue;
+                }
+
+                echo "Compiling ${filePath}\n";
+                if (!is_writable($filePath)) {
+                    throw new RuntimeException("No permissions to write file {$filePath}");
+                }
+
+                opcache_compile_file($filePath);
+                file_put_contents($filePath, "<?php".PHP_EOL."//compiled by Cactus");
+            }
+
+            if (is_dir($filePath)) {
+                if (!is_readable($filePath)) {
+                    throw new RuntimeException("No permissions to read dir {$filePath}");
+                }
+                $this->compile($rootDirectory . DIRECTORY_SEPARATOR . $dirChild, false);
+            }
+        }
+
+        if ($isRootDir) {
+            echo "Compilation has been successfully finished!\n";
+        }
     }
 }
