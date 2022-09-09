@@ -110,8 +110,8 @@ class Cactus
             if (is_file($filePath) && in_array(mime_content_type($filePath), $phpMimeTypes, true)
             ) {
 
-                //if file has been compliled
-                if(strpos(file_get_contents($filePath), "compiled by Cactus") !== false && $dirChild !== "Cactus.php") {
+                //if file has been compiled
+                if($dirChild !== "Cactus.php" && str_contains(file_get_contents($filePath), "compiled by Cactus")) {
                     //do not compile it again
                     echo "Skipping file ${filePath}, has already been compiled\n";
                     continue;
@@ -122,8 +122,12 @@ class Cactus
                     throw new RuntimeException("No permissions to write file {$filePath}");
                 }
 
-                opcache_compile_file($filePath);
-                file_put_contents($filePath, "<?php".PHP_EOL."//compiled by Cactus");
+                if (@opcache_compile_file($filePath)) {
+                    file_put_contents($filePath, "<?php".PHP_EOL."//compiled by Cactus");
+                }
+                else {
+                    echo "Cannot compile file ${filePath}, either is incompatible or has been previously compiled\n";
+                }
             }
 
             if (is_dir($filePath)) {
