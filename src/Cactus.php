@@ -147,7 +147,7 @@ class Cactus
         }
 
         if ($isRootDir) {
-            echo "Compilation has been successfully finished!\n";
+            echo "Compilation has been successfully completed!\n";
         }
     }
 }
