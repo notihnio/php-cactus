@@ -113,9 +113,13 @@ class Cactus
                 //if file has been compiled
                 if($dirChild !== "Cactus.php" && str_contains(file_get_contents($filePath), "compiled by Cactus")) {
 
-                    //do not compile it again
-                    echo "Skipping file ${filePath}, has already been compiled\n";
-                    continue;
+                    if (opcache_is_script_cached($filePath)) {
+                        //do not compile it again
+                        echo "Skipping file ${filePath}, has already been compiled\n";
+                        continue;
+                    }
+
+                    throw new RuntimeException("File {$filePath} has been previously compiled, but it does not exist in the opcache. It probably has been invalidated or deleted");
                 }
 
                 echo "Compiling ${filePath}\n";
