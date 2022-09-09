@@ -110,18 +110,20 @@ class Cactus
             if (is_file($filePath) && in_array(mime_content_type($filePath), $phpMimeTypes, true)
             ) {
 
-                //if file has been compiled
-                if($dirChild !== "Cactus.php" && str_contains(file_get_contents($filePath), "compiled by Cactus")) {
+                //if file exists in cache
+                if (opcache_is_script_cached($filePath)) {
 
-                    if (opcache_is_script_cached($filePath)) {
+                    //if file has been compiled from cactus
+                    if($dirChild !== "Cactus.php" && str_contains(file_get_contents($filePath), "compiled by Cactus")) {
+
                         //do not compile it again
                         echo "Skipping file ${filePath}, has already been compiled\n";
                         continue;
                     }
 
-                    throw new RuntimeException("File {$filePath} has been previously compiled, but it does not exist in the opcache. It probably has been invalidated or deleted");
+                    //invalidate cache and let cactus compile the file again
+                    opcache_invalidate($filePath, true);
                 }
-
                 echo "Compiling ${filePath}\n";
                 if (!is_writable($filePath)) {
                     throw new RuntimeException("No permissions to write file {$filePath}");
