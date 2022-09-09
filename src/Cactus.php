@@ -133,7 +133,7 @@ class Cactus
                     file_put_contents($filePath, "<?php".PHP_EOL."//compiled by Cactus");
                 }
                 else {
-                    echo "Cannot compile file ${filePath}, either is incompatible or has been previously compiled\n";
+                    echo "Cannot compile file ${filePath}, either is incompatible or has been previously compiled. Process failed... Get a fresh copy of your code and try again!\n";
                 }
             }
 
