@@ -1,0 +1,16 @@
+{
+  "name": "cactus/test",
+  "type": "project",
+  "description": "Cactus testing.",
+  "keywords": ["Cactus", "testing"],
+  "license": "MIT",
+  "require": {
+    "php": "^8.0.2",
+    "notihnio/php-cactus": "master",
+    "phpunit/phpunit": "^9.0"
+  },
+  "require-dev": {
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
