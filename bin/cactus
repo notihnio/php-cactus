@@ -4,7 +4,7 @@
 
 include $_composer_autoload_path;
 
-if (!in_array("noPrompt", $argv, true)) {
+if (!in_array("--noPrompt", $argv, true)) {
     $shouldContinue = readline('Are you sure you want to proceed to compilation? (Y/N): ');
     if (strtolower($shouldContinue) !== 'y') {
         exit(0);
