@@ -1,6 +1,6 @@
 # PHP Cactus 🌵
 
-Protect your PHP code from been stolen. Deploy with no fear to not owning servers. This library compiles your PHP code to opcodes and empties all php files of your project. All produced opcode files are saved on server's filesystem and used by Opcache.
+Protect your PHP code from been stolen. Deploy with no fear to not owning servers. This library compiles your PHP code to opcodes and empties all php files included in your project. All produced opcode files are saved on server's filesystem and used by Opcache.
 
 **Before**
 
