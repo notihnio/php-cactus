@@ -41,7 +41,7 @@ jobs:
         run: php -i
       
       - name: Enable OPCache
-        run: echo 'opcache.enable=1\n opcache.enable_cli=1  \n opcache.validate_timestamps=0\n opcache.file_cache = /tmp/cache\n' >> /etc/php/8.1/cli/conf.d/10-opcache.ini
+        run: sudo echo 'opcache.enable=1\n opcache.enable_cli=1  \n opcache.validate_timestamps=0\n opcache.file_cache = /tmp/cache\n' >> /etc/php/8.1/cli/conf.d/10-opcache.ini
 
       - name: Compile Files
         run: ${GITHUB_WORKSPACE}/test/sampleProject/vendor/bin/cactus --noPrompt
