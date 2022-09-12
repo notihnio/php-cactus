@@ -1,6 +1,6 @@
 # PHP Cactus 🌵
 
-Protect your PHP code from been stolen. Deploy with no fear to not owning servers. This library compiles your PHP code to opcodes and empties all php files included in your project. All produced opcode files are saved on server's filesystem and used by Opcache.
+Protect your PHP code from being stolen. Deploy with no fear of not owning servers. This library compiles your PHP code to opcodes and removes code from all php files included in your project. All produced opcode files are saved on the server's filesystem and used by OPcache.
 
 **Before**
 
@@ -37,7 +37,7 @@ index.php.bin
 - If you want to update a file after compilation. Replace the existing
   (empty file) with the updated one, and run PHP cactus again
 
-- The opcodes should be served by same interpreter which has created them.
+- The opcodes should be served by the same interpreter which has created them.
 - A good idea is to create docker images with your compiled app. Your could update your app by updating your docker image version
 
 ## Install
