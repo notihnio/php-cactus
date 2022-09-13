@@ -10,16 +10,12 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    steps:
-      - name: Setup PHP with exceptions
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-          coverage: none
-          ini-values: opcache.enable=1, opcache.enable_cli=1, opcache.validate_timestamps=0, opcache.file_cache = "/opcache"
-          extensions: mbstring, opcache, fileinfo
-
+    
+    container:
+      image: cirrusci/flutter:v1.7.8-hotfix.4
+      options: --user root
+        
+    steps:        
       - uses: actions/checkout@v2
 
       - name: Validate composer.json and composer.lock
