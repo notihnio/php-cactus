@@ -18,8 +18,7 @@ jobs:
           php-version: '8.1'
           coverage: none
           ini-values: opcache.enable=1, opcache.enable_cli=1, opcache.validate_timestamps=0, opcache.file_cache = "/opcache"
-          extensions: mbstring, opcache, fileinfo
-
+          
       - uses: actions/checkout@v2
 
       - name: Validate composer.json and composer.lock
@@ -38,10 +37,7 @@ jobs:
         run: composer install --working-dir=${GITHUB_WORKSPACE}/test/sampleProject --prefer-dist --no-progress
 
       - name: Check PHP Installation
-        run: php -i
-      
-      - name: Enable OPCache
-        run: sudo echo 'opcache.enable=1\n opcache.enable_cli=1  \n opcache.validate_timestamps=0\n opcache.file_cache = /tmp/cache\n' >> /etc/php/8.1/cli/conf.d/10-opcache.ini
+        run: php -i |grep opcache
 
       - name: Compile Files
         run: ${GITHUB_WORKSPACE}/test/sampleProject/vendor/bin/cactus --noPrompt
