@@ -17,7 +17,9 @@ jobs:
         with:
           php-version: '8.1'
           coverage: none
-          
+          ini-values: opcache.enable=1, opcache.enable_cli=1, opcache.validate_timestamps=0, opcache.file_cache = "/opcache"
+          extensions: mbstring, ext-zend-opcache, ext-fileinfo
+
       - uses: actions/checkout@v2
 
       - name: Validate composer.json and composer.lock
@@ -35,11 +37,8 @@ jobs:
       - name: Install dependencies
         run: composer install --working-dir=${GITHUB_WORKSPACE}/test/sampleProject --prefer-dist --no-progress
 
-      - name: Check PHP Installation
-        run: php -i |grep opcache
-
       - name: Compile Files
-        run: ${GITHUB_WORKSPACE}/test/sampleProject/vendor/bin/cactus --noPrompt
+        run: ${GITHUB_WORKSPACE}/test/sampleProject/vendor/bin/cactus --noPrompt > ${GITHUB_WORKSPACE}/test/compilation-log 2>&1 &
 
       - name: Run tests
         run: php ${GITHUB_WORKSPACE}/test/sampleProject/vendor/phpunit/phpunit/phpunit ${GITHUB_WORKSPACE}/test/sampleProject/tests
