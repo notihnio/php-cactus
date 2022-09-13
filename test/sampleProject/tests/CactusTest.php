@@ -1,6 +1,6 @@
 <?php
 
-namespace CactusTests;
+namespace Tests;
 
 use \PHPUnit\Framework\TestCase;
 

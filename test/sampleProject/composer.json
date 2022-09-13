@@ -13,7 +13,12 @@
   },
   "autoload": {
     "psr-4": {
-      "CactusTests\\": "tests/"
+      "Tests\\": "tests/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
     }
   },
   "minimum-stability": "dev",
