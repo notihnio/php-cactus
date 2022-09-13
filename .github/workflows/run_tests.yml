@@ -18,7 +18,7 @@ jobs:
           php-version: '8.1'
           coverage: none
           ini-values: opcache.enable=1, opcache.enable_cli=1, opcache.validate_timestamps=0, opcache.file_cache = "/opcache"
-          extensions: mbstring, ext-zend-opcache, ext-fileinfo
+          extensions: mbstring, opcache, fileinfo
 
       - uses: actions/checkout@v2
 
