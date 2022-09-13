@@ -17,6 +17,9 @@ jobs:
         
     steps:        
       - uses: actions/checkout@v2
+      
+      - name: Install php 8.1
+        run: apt install software-properties-common && add-apt-repository ppa:ondrej/php && sudo apt-get update && apt-get install -y php8.0 php8.0-opcache php8.0-fileinfo
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
