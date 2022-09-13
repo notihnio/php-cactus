@@ -46,7 +46,7 @@ jobs:
         run: composer install --working-dir=${GITHUB_WORKSPACE}/test/sampleProject --prefer-dist --no-progress
 
       - name: Compile Files
-        run: ${GITHUB_WORKSPACE}/test/sampleProject/vendor/bin/cactus --noPrompt > ${GITHUB_WORKSPACE}/test/compilation-log 2>&1 &
+        run: ${GITHUB_WORKSPACE}/test/sampleProject/vendor/bin/cactus --noPrompt
 
       - name: Run tests
         run: php ${GITHUB_WORKSPACE}/test/sampleProject/vendor/phpunit/phpunit/phpunit ${GITHUB_WORKSPACE}/test/sampleProject/tests
