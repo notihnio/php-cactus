@@ -12,18 +12,12 @@ jobs:
     runs-on: ubuntu-22.04
     
     container:
-      image: cirrusci/flutter:v1.7.8-hotfix.4
+      image: php:8.1-cli
       options: --user root
         
     steps:        
       - uses: actions/checkout@v2
       
-      - name: Install php 8.0
-        run:  apt install lsb-release ca-certificates software-properties-common -y && apt update && add-apt-repository ppa:ondrej/php && apt update && apt install unzip php8.0 php8.0-opcache -y
-
-      - name: Install composer
-        run: curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php && php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
-        
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
 
