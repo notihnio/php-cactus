@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Install php 8.0
-        run:  apt install lsb-release ca-certificates software-properties-common -y && apt update && && add-apt-repository ppa:ondrej/php && apt install php8.0 -y
+        run:  apt install lsb-release ca-certificates software-properties-common -y && apt update && add-apt-repository ppa:ondrej/php && apt install php8.0 -y
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
