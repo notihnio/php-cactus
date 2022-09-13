@@ -18,6 +18,9 @@ jobs:
     steps:        
       - uses: actions/checkout@v2
       
+      - name: Fix Permissions
+        run: chmod -R 777 /tmp/cache
+      
       - name: Install Dependencies
         run: apt-get update && apt-get install -y git zip unzip
       
