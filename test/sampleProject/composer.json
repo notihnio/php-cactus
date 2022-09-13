@@ -11,6 +11,11 @@
   },
   "require-dev": {
   },
+  "autoload": {
+    "psr-4": {
+      "CactusTests\\": "tests/"
+    }
+  },
   "minimum-stability": "dev",
   "prefer-stable": true
 }

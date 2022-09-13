@@ -1,5 +1,7 @@
 <?php
 
+namespace CactusTests;
+
 use \PHPUnit\Framework\TestCase;
 
 final class CactusTest extends TestCase
