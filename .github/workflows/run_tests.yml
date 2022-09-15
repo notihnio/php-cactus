@@ -23,6 +23,12 @@ jobs:
       
       - name: Install Dependencies
         run: apt-get update && apt-get install -y git zip unzip
+
+      - name: Install OPCache
+        run: docker-php-ext-install opcache && docker-php-ext-enable opcache
+
+      - name: Enable OPCache
+        run: echo 'opcache.enable=1\n opcache.enable_cli=1  \n opcache.validate_timestamps=0\n opcache.file_cache = /tmp/cache\n' >> /usr/local/etc/php/conf.d/opcache.ini
       
       - name: Install composer
         run: curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php && php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
@@ -41,12 +47,6 @@ jobs:
 
       - name: Install dependencies
         run: composer install --working-dir=${GITHUB_WORKSPACE}/test/sampleProject --prefer-dist --no-progress
-
-      - name: Enable OPCache
-        run: echo 'opcache.enable=1\n opcache.enable_cli=1  \n opcache.validate_timestamps=0\n opcache.file_cache = /tmp/cache\n' >> /usr/local/etc/php/conf.d/opcache.ini
-
-      - name: Install OPCache
-        run: docker-php-ext-install opcache && docker-php-ext-enable opcache
 
       - name: Compile Files
         run: ${GITHUB_WORKSPACE}/test/sampleProject/vendor/bin/cactus --noPrompt
