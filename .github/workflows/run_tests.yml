@@ -52,4 +52,4 @@ jobs:
         run: ${GITHUB_WORKSPACE}/test/sampleProject/vendor/bin/cactus --noPrompt
 
       - name: Run tests
-        run: php ${GITHUB_WORKSPACE}/test/sampleProject/vendor/phpunit/phpunit/phpunit ${GITHUB_WORKSPACE}/test/sampleProject/tests
+        run: php ${GITHUB_WORKSPACE}/test/sampleProject/vendor/phpunit/phpunit/phpunit --configuration ${GITHUB_WORKSPACE}/test/sampleProject/phpunit.xml
