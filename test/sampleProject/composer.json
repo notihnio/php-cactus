@@ -6,10 +6,10 @@
   "license": "MIT",
   "require": {
     "php": "^8.0.2",
-    "notihnio/php-cactus": "master",
-    "phpunit/phpunit": "^9.0"
+    "notihnio/php-cactus": "master"
   },
   "require-dev": {
+    "phpunit/phpunit": "^9.0"
   },
   "autoload": {
     "psr-4": {
