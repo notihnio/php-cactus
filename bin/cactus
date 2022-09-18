@@ -4,12 +4,31 @@
 
 include $_composer_autoload_path;
 
+//prompt
 if (!in_array("--noPrompt", $argv, true)) {
     $shouldContinue = readline('Are you sure you want to proceed to compilation? (Y/N): ');
     if (strtolower($shouldContinue) !== 'y') {
         exit(0);
     }
 }
+
+//route path
+$requiredDir = null;
+$isRequiredDirDirSpecified = array_search("--dir", $argv, true);
+
+if ($isRequiredDirDirSpecified) {
+    if (count($argv) < $isRequiredDirDirSpecified+2) {
+        echo "Path is not valid\n";
+        exit(1);
+    }
+    $requiredDir = $argv[$isRequiredDirDirSpecified+1];
+
+    if (str_starts_with("/", $requiredDir)) {
+        echo "Path should be relative to the project route path (ex. app/controllers)\n";
+        exit(1);
+    }
+}
+
 
 try {
     $cactus = new \Notihnio\Cactus\Cactus();
@@ -18,10 +37,19 @@ try {
     exit(1);
 }
 
-$rootDir = dirname(__FILE__, 5);
+$compilationDir = $projectDir = dirname(__FILE__, 5);
+
+if (!is_null($requiredDir)) {
+    $compilationDir = $projectDir.DIRECTORY_SEPARATOR.$requiredDir;
+}
+
+if (!is_dir($compilationDir)) {
+    echo "Path is not valid\n";
+    exit(1);
+}
 
 try {
-    $cactus->compile($rootDir);
+    $cactus->compile($compilationDir);
 } catch (\Notihnio\Cactus\Exception\RunTimeException $exception) {
     echo "Runtime error: {$exception->getMessage()}\n";
     exit(1);
