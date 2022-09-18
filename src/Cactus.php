@@ -131,12 +131,15 @@ class Cactus
                     throw new RuntimeException("No permissions to write file {$filePath}");
                 }
 
-                if (@opcache_compile_file($filePath)) {
-                    file_put_contents($filePath, "<?php".PHP_EOL."//compiled by Cactus");
+                try {
+                    if (opcache_compile_file($filePath)) {
+                        file_put_contents($filePath, "<?php".PHP_EOL."//compiled by Cactus");
+                    }
+                } catch (\Throwable $exception) {
+                    echo "Cannot compile file ${filePath}, either is incompatible or has been previously compiled.\n";
                 }
-                else {
-                    echo "Cannot compile file ${filePath}, either is incompatible or has been previously compiled. Process failed... Get a fresh copy of your code and try again!\n";
-                }
+
+
             }
 
             if (is_dir($filePath)) {
