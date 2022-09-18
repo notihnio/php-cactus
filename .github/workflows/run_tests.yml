@@ -52,4 +52,4 @@ jobs:
         run: ${GITHUB_WORKSPACE}/test/sampleProject/vendor/bin/cactus --noPrompt --dir toBeCompiled
 
       - name: Run tests
-        run: php ${GITHUB_WORKSPACE}/test/sampleProject/vendor/phpunit/phpunit/phpunit --configuration ${GITHUB_WORKSPACE}/test/sampleProject/phpunit.xml
+        run: cd  ${GITHUB_WORKSPACE}/test/sampleProject && php vendor/phpunit/phpunit/phpunit --configuration phpunit.xml
