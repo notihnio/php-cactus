@@ -63,4 +63,6 @@ Run php Cactus without any prompt (Force mode for your deployment process)
     YourProjectRootDir/vendor/bin/cactus --noPrompt
 
 
+Run php Cactus for specific project subdirectory (dir parameter should be relative to project root directory)
 
+    YourProjectRootDir/vendor/bin/cactus --dir app/Controllers
