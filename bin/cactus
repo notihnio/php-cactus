@@ -4,15 +4,6 @@
 
 include $_composer_autoload_path;
 
-/**
- * @throws \ErrorException
- */
-function cactusErrorHandler($errno, $errstr, $errfile, $errline ) {
-    throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
-}
-
-set_error_handler("cactusErrorHandler");
-
 //prompt
 if (!in_array("--noPrompt", $argv, true)) {
     $shouldContinue = readline('Are you sure you want to proceed to compilation? (Y/N): ');

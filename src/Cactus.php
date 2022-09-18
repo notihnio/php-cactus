@@ -132,9 +132,13 @@ class Cactus
                 }
 
                 try {
+                    CactusErrorHandler::start(E_WARNING);
+
                     if (opcache_compile_file($filePath)) {
                         file_put_contents($filePath, "<?php".PHP_EOL."//compiled by Cactus");
                     }
+                    CactusErrorHandler::stop(true);
+
                 } catch (\Error|\Exception|\Throwable|\ErrorException $exception) {
                     echo "Cannot compile file ${filePath}, either is incompatible or has been previously compiled.\n";
                 }
